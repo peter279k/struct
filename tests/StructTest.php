@@ -65,6 +65,7 @@ class ContainerTest extends TestCase
         $this->assertFalse(isset($user->username));
         $user->username = 'bob';
         $this->assertTrue(isset($user->username));
+        $this->assertFalse(isset($user->username->undefined));
     }
 
     /**
@@ -74,6 +75,7 @@ class ContainerTest extends TestCase
     {
         $user = new User();
         $this->assertFalse(isset($user->nada));
+        $this->assertFalse(isset($user->nada->undefined));
     }
 
 }
