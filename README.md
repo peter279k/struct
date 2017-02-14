@@ -7,6 +7,15 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/odan/struct.svg)](https://packagist.org/packages/odan/struct)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE.md)
 
+## About structs
+
+PHP has no built in struct type. This package tries to fill these gap.
+
+Read more:
+* https://msdn.microsoft.com/en-us/library/ah19swz4.aspx
+* https://qafoo.com/blog/096_refactoring_extract_data_objects.html
+* https://www.reddit.com/r/PHP/comments/5tui33/refactoring_extracting_data_objects/
+
 ## Installation
 
 ```
