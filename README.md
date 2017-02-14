@@ -1,2 +1,2 @@
-# value-types
-Value Types (Structs, Enumerations) for PHP 
+# Struct type for PHP
+
