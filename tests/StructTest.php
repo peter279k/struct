@@ -2,7 +2,6 @@
 
 namespace Odan\Test;
 
-use Exception;
 use Odan\ValueType\Struct;
 use Odan\Test\Struct\User;
 use PHPUnit\Framework\TestCase;
