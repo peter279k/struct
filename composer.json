@@ -1,18 +1,18 @@
 {
-    "name": "odan/value-types",
+    "name": "odan/struct",
     "type": "project",
     "description": "Struct type for PHP",
     "keywords": [
         "struct",
         "value type"
     ],
-    "homepage": "http://github.com/odan/value-types",
+    "homepage": "http://github.com/odan/struct",
     "license": "MIT",
     "authors": [
         {
             "name": "odan",
             "email": "odan@users.noreply.github.com",
-            "homepage": "https://github.com/odan/value-types",
+            "homepage": "https://github.com/odan/struct",
             "role": "Developer"
         }
     ],
