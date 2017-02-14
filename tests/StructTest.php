@@ -34,8 +34,8 @@ class ContainerTest extends TestCase
     public function testGet()
     {
         $user = new User();
-        $user->username = 'jon';
-        $user->email = 'jon@example.com';
+        $user->username = 'bob';
+        $user->email = 'bob@example.com';
 
         // Get undefined property
         $value = $user->nada;
@@ -49,11 +49,31 @@ class ContainerTest extends TestCase
     public function testSet()
     {
         $user = new User();
-        $user->username = 'jon';
-        $user->email = 'jon@example.com';
+        $user->username = 'bob';
+        $user->email = 'bob@example.com';
 
         // Set undefined property
         $user->nada = 'not existing field';
+    }
+
+    /**
+     * Test isset.
+     */
+    public function testIsset()
+    {
+        $user = new User();
+        $this->assertFalse(isset($user->username));
+        $user->username = 'bob';
+        $this->assertTrue(isset($user->username));
+    }
+
+    /**
+     * Test isset.
+     */
+    public function testIssetUndefined()
+    {
+        $user = new User();
+        $this->assertFalse(isset($user->nada));
     }
 
 }
