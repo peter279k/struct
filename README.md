@@ -9,7 +9,7 @@
 
 ## About structs
 
-PHP has no built in struct type. This package tries to fill these gap.
+PHP has no built in struct type. This package tries to fill this gap.
 
 Read more:
 * https://msdn.microsoft.com/en-us/library/ah19swz4.aspx
