@@ -7,6 +7,5 @@ namespace Odan\ValueType;
  */
 class Struct
 {
-
     use StructTrait;
 }

@@ -9,5 +9,4 @@ class User extends Struct
     public $username;
 
     public $email;
-
 }

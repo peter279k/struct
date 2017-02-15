@@ -106,5 +106,4 @@ class ContainerTest extends TestCase
         $user = new User();
         unset($user->nada);
     }
-
 }

@@ -68,5 +68,4 @@ trait StructTrait
     {
         throw new StructException(sprintf("Property [%s] doesn't exist for class [%s].", $name, get_class($this)));
     }
-
 }
