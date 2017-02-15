@@ -5,6 +5,7 @@ namespace Odan\Test;
 use Odan\ValueType\Struct;
 use Odan\Test\Struct\User;
 use PHPUnit\Framework\TestCase;
+use PDO;
 
 /**
  * ContainerTest
@@ -106,4 +107,59 @@ class ContainerTest extends TestCase
         $user = new User();
         unset($user->nada);
     }
+
+    public function getPdo()
+    {
+        $pdo = new PDO('sqlite::memory:');
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $pdo->exec('CREATE TABLE user(id INTEGER PRIMARY KEY ASC, username, email)');
+
+        $stmt = $pdo->prepare("INSERT INTO user (username, email) VALUES (:username, :email)");
+        $stmt->bindValue(':username', 'bob');
+        $stmt->bindValue(':email', 'bob@exmaple.com');
+        $stmt->execute();
+        $stmt->execute();
+        $stmt->execute();
+        return $pdo;
+    }
+
+    /**
+     * Test PDO.
+     */
+    public function testPdoFetchAll()
+    {
+        $pdo = $this->getPdo();
+        $rows = $pdo->query('SELECT username, email FROM user')->fetchAll(PDO::FETCH_CLASS, User::class);
+        $this->assertTrue(isset($rows[0]->username));
+        $this->assertTrue(isset($rows[0]->email));
+        unset($pdo);
+    }
+
+    /**
+     * Test PDO.
+     */
+    public function testPdoFetch()
+    {
+        $pdo = $this->getPdo();
+        $stmt = $pdo->query('SELECT username, email FROM user');
+        $stmt->setFetchMode(PDO::FETCH_CLASS, User::class);
+        $row = $stmt->fetch();
+        $this->assertTrue(isset($row->username));
+        $this->assertTrue(isset($row->email));
+        unset($pdo);
+    }
+
+    /**
+     * Test PDO.
+     *
+     * @expectedException \Odan\ValueType\Exception\StructException
+     */
+    public function testPdoSelectUndefined()
+    {
+        $pdo = $this->getPdo();
+        $pdo->query('SELECT id, username, email FROM user')->fetchAll(PDO::FETCH_CLASS, User::class);
+        unset($pdo);
+    }
+
 }
