@@ -25,7 +25,6 @@ composer require odan/struct
 ## Usage
 
 ```php
-
 use Odan\ValueType\Struct;
 
 class User extends Struct
@@ -43,4 +42,28 @@ $value = $user->nada;   // -> Exception: Cannot get undefined property
 
 // Set Get undefined property
 $user->nada = 'test';  // -> Exception: Undefined property (nada)
+```
+
+What would struct offer over typed properties with accessors to most people?
+A struct is more a "fixed" type, while PHP class properties are not fixed.
+Example for a "wrong" struct.
+
+```php
+class Book
+{
+    public $price;
+    public $title;
+    public $author;
+}
+$book = new Book();
+$book->price = 39;
+$book->title = 'My book title';
+$book->author = 'Me';
+
+// Set a undefined property from "outside".
+// This is possible by default in PHP, but not allowed for a struct.
+// A struct would raise an Exception here, and this would be better
+// because this property is not defined in the Book class.
+$book->isbn = '1234567890';
+
 ```
