@@ -34,16 +34,6 @@ class User extends Struct
     public $username;
     public $email;
 }
-
-$user = new User();
-$user->username = 'John';
-$user->email = 'john@example.com';
-
-// Get undefined property
-$value = $user->nada;   // -> Exception: Cannot get undefined property
-
-// Set Get undefined property
-$user->nada = 'test';  // -> Exception: Undefined property (nada)
 ```
 
 ### As trait
