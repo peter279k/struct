@@ -24,6 +24,8 @@ composer require odan/struct
 
 ## Usage
 
+### Inheritance
+
 ```php
 use Odan\ValueType\Struct;
 
@@ -33,6 +35,34 @@ class User extends Struct
     public $email;
 }
 
+$user = new User();
+$user->username = 'John';
+$user->email = 'john@example.com';
+
+// Get undefined property
+$value = $user->nada;   // -> Exception: Cannot get undefined property
+
+// Set Get undefined property
+$user->nada = 'test';  // -> Exception: Undefined property (nada)
+```
+
+### As trait
+
+```php
+use Odan\ValueType\StructTrait;
+
+class User
+{
+    use StructTrait;
+    
+    public $username;
+    public $email;
+}
+```
+
+### Example
+
+```php
 $user = new User();
 $user->username = 'John';
 $user->email = 'john@example.com';
@@ -65,5 +95,4 @@ $book->author = 'Me';
 // A struct would raise an Exception here, and this would be better
 // because this property is not defined in the Book class.
 $book->isbn = '1234567890';
-
 ```
