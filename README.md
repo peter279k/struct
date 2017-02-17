@@ -22,6 +22,31 @@ Read more:
 composer require odan/struct
 ```
 
+## Why ?
+
+What would struct offer over typed properties with accessors to most people?
+A struct is more a "fixed" type, while PHP class properties are not fixed.
+Example for a "wrong" struct.
+
+```php
+class Book
+{
+    public $price;
+    public $title;
+    public $author;
+}
+$book = new Book();
+$book->price = 39;
+$book->title = 'My book title';
+$book->author = 'Me';
+
+// Set a undefined property from "outside".
+// This is possible by default in PHP, but not allowed for a struct.
+// A struct would raise an Exception here, and this would be better
+// because this property is not defined in the Book class.
+$book->isbn = '1234567890';
+```
+
 ## Usage
 
 ### Inheritance
@@ -50,7 +75,7 @@ class User
 }
 ```
 
-### Example
+### Basic example
 
 ```php
 $user = new User();
@@ -64,25 +89,46 @@ $value = $user->nada;   // -> Exception: Cannot get undefined property
 $user->nada = 'test';  // -> Exception: Undefined property (nada)
 ```
 
-What would struct offer over typed properties with accessors to most people?
-A struct is more a "fixed" type, while PHP class properties are not fixed.
-Example for a "wrong" struct.
+## A struct as parameter
+
+At one point or the other we have all seen a constructor like below:
 
 ```php
-class Book
-{
-    public $price;
-    public $title;
-    public $author;
-}
-$book = new Book();
-$book->price = 39;
-$book->title = 'My book title';
-$book->author = 'Me';
+public function __construct($size, $cheese = true, $pepperoni = true, $tomato = false, $lettuce = true) { //... }
+```
+As you can see; the number of constructor parameters can quickly get out of hand and it might become difficult to understand the arrangement of parameters. Plus this parameter list could keep on growing if you would want to add more options in future. 
 
-// Set a undefined property from "outside".
-// This is possible by default in PHP, but not allowed for a struct.
-// A struct would raise an Exception here, and this would be better
-// because this property is not defined in the Book class.
-$book->isbn = '1234567890';
+The sane alternative is to use a strcut.
+
+```php
+use Odan\ValueType\Struct;
+
+class PizzaSetting extends Struct
+{
+    public $size;
+    public $cheese;
+    public $pepperoni;
+    public $tomato;
+    public $lettuce;
+}
+```
+
+And then it can be used as:
+```php
+$margherita = new PizzaSetting();
+$margherita->size = 14;
+$margherita->tomato = true;
+$margherita->cheese = true;
+
+$pizza = new Pizza($margherita);
+```
+
+### Database example
+
+You can create strong typed datasets like this:
+
+```php
+$pdo = new PDO('sqlite::memory:');
+$rows = $pdo->query('SELECT username, email FROM user')->fetchAll(PDO::FETCH_CLASS, User::class);
+var_dump($rows); // array of User struct objects
 ```
