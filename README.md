@@ -98,7 +98,7 @@ public function __construct($size, $cheese = true, $pepperoni = true, $tomato = 
 ```
 As you can see; the number of constructor parameters can quickly get out of hand and it might become difficult to understand the arrangement of parameters. Plus this parameter list could keep on growing if you would want to add more options in future. 
 
-The sane alternative is to use a strcut.
+The sane alternative is to use a struct.
 
 ```php
 use Odan\ValueType\Struct;
@@ -122,12 +122,12 @@ class Pizza
 
 And then it can be used as:
 ```php
-$margherita = new PizzaSetting();
-$margherita->size = 14;
-$margherita->tomato = true;
-$margherita->cheese = true;
+$settings = new PizzaSetting();
+$settings->size = 14;
+$settings->tomato = true;
+$settings->cheese = true;
 
-$pizza = new Pizza($margherita);
+$pizza = new Pizza($settings);
 ```
 
 ### Database example
