@@ -85,11 +85,11 @@ $user->email = 'john@example.com';
 // Get undefined property
 $value = $user->nada;   // -> Exception: Cannot get undefined property
 
-// Set Get undefined property
+// Set undefined property
 $user->nada = 'test';  // -> Exception: Undefined property (nada)
 ```
 
-## A struct as parameter
+## Using a struct as parameter
 
 At one point or the other we have all seen a constructor like below:
 
@@ -120,7 +120,8 @@ class Pizza
 }
 ```
 
-And then it can be used as:
+And then it can be used like this:
+
 ```php
 $settings = new PizzaSetting();
 $settings->size = 14;
@@ -130,9 +131,9 @@ $settings->cheese = true;
 $pizza = new Pizza($settings);
 ```
 
-### Database example
+### Using a struct for database queries
 
-You can create strong typed datasets like this:
+You can query more strongly typed results like this:
 
 ```php
 $pdo = new PDO('sqlite::memory:');
