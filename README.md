@@ -111,6 +111,13 @@ class PizzaSetting extends Struct
     public $tomato;
     public $lettuce;
 }
+
+class Pizza 
+{
+    public function __construct(PizzaSetting $settings) {
+        // ...
+    }
+}
 ```
 
 And then it can be used as:
