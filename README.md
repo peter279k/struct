@@ -9,7 +9,20 @@
 
 ## About structs
 
-PHP has no built in struct type. This package tries to fill this gap.
+A struct type is a value type that is typically used to encapsulate small groups of related variables, such as the coordinates of a rectangle or the characteristics of an item in an inventory. 
+
+The following example shows a simple struct declaration:
+
+```php
+use Odan\ValueType\Struct;
+
+class Book extends Struct
+{
+    public $price;
+    public $title;
+    public $author;
+}
+```
 
 Read more:
 * https://msdn.microsoft.com/en-us/library/ah19swz4.aspx
